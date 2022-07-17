@@ -7,12 +7,14 @@ Similar to Matt Andrews'
 
 ## Usage
 
-Make an HTTP `GET` request to a resource, and get the relevant version as a
+Make an HTTP `GET` request to an API endpoint, and get the relevant version as a
 `text/plain` response.
 
-### Resources
+### API Endpoints
 
-#### `https://semver-version.deno.dev/api/github/:owner/:repo`
+#### Latest version
+
+`GET https://semver-version.deno.dev/api/github/:owner/:repo`
 
 Finds the latest git tag for a Github repo.
 
@@ -23,7 +25,9 @@ curl -f https://semver-version.deno.dev/api/github/ziglang/zig
 curl -f https://semver-version.deno.dev/api/github/denoland/fresh
 ```
 
-#### `https://semver-version.deno.dev/api/github/:owner/:repo/:range`
+#### Range
+
+`GET https://semver-version.deno.dev/api/github/:owner/:repo/:range`
 
 Finds the latest git tag for a Github repo, that satisfies a specified
 [semantic Versioning range](https://devhints.io/semver).
@@ -35,28 +39,28 @@ curl -f https://semver-version.deno.dev/api/github/ziglang/zig/0.8
 curl -f https://semver-version.deno.dev/api/github/denoland/fresh/1
 ```
 
-When specifying a range, the range must be a valid semver range. It must also be
-correctly URI encoded.
-
-For example, the URI encoding of `>=0.7 <0.8` is `%3E%3D0.7%20%3C0.8`:
-
-```js
-encodeURIComponent(">=0.7 <0.8");
-// "%3E%3D0.7%20%3C0.8"
-```
-
-So to get the version of `ziglang/zig` that satisfies the range `>=0.7 <0.8`,
-you would do:
-
-```sh
-curl -f https://semver-version.deno.dev/api/github/ziglang/zig/"%3E%3D0.7%20%3C0.8"
-```
-
-...and get:
-
-```
-0.7.1
-```
+> When specifying a range, the range must be a valid semver range. It must also
+> be correctly URI encoded.
+>
+> For example, the URI encoding of `>=0.7 <0.8` is `%3E%3D0.7%20%3C0.8`:
+>
+> ```js
+> encodeURIComponent(">=0.7 <0.8");
+> // "%3E%3D0.7%20%3C0.8"
+> ```
+>
+> So to get the version of `ziglang/zig` that satisfies the range `>=0.7 <0.8`,
+> you would do:
+>
+> ```sh
+> curl -f https://semver-version.deno.dev/api/github/ziglang/zig/"%3E%3D0.7%20%3C0.8"
+> ```
+>
+> ...and get:
+>
+> ```
+> 0.7.1
+> ```
 
 ## Contributing
 

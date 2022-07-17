@@ -4,11 +4,13 @@
 
 import * as $0 from "./routes/api/github/[owner]/[repo]/[range].ts";
 import * as $1 from "./routes/api/github/[owner]/[repo]/index.ts";
+import * as $2 from "./routes/index.tsx";
 
 const manifest = {
   routes: {
     "./routes/api/github/[owner]/[repo]/[range].ts": $0,
     "./routes/api/github/[owner]/[repo]/index.ts": $1,
+    "./routes/index.tsx": $2,
   },
   islands: {},
   baseUrl: import.meta.url,
