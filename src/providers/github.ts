@@ -6,8 +6,8 @@ interface Tag {
 
 function getRepoUrl(owner: string, repo: string): string {
   return [
-    `https://api.github.com`,
-    `repos`,
+    "https://api.github.com",
+    "repos",
     encodeURIComponent(owner),
     encodeURIComponent(repo),
   ].join("/");
