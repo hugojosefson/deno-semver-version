@@ -1,16 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
-
-const css = `
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-  font-size: 1.5em;
-  font-family: sans-serif;
-}`;
+import { HandlerContext } from "$fresh/src/server/types.ts";
+import { css } from "../src/css.ts";
 
 export default function Home() {
   return [
@@ -23,4 +14,15 @@ export default function Home() {
       </a>
     </main>,
   ];
+}
+
+const HOUR = 60 * 60;
+
+export async function handler(
+  _req: Request,
+  ctx: HandlerContext,
+): Promise<Response> {
+  const response: Response = await ctx.render();
+  response.headers.set("Cache-Control", `max-age=${HOUR}`);
+  return response;
 }

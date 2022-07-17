@@ -1,4 +1,5 @@
 import { config } from "@src/config.ts";
+import { VersionsResponse } from "./versions-response.ts";
 
 interface Tag {
   name: string;
@@ -16,7 +17,7 @@ function getRepoUrl(owner: string, repo: string): string {
 export async function getVersions(
   owner: string,
   repo: string,
-): Promise<string[] | Response> {
+): Promise<VersionsResponse | Response> {
   const url = `${getRepoUrl(owner, repo)}/tags`;
 
   const token = config.github.token;
@@ -34,6 +35,12 @@ export async function getVersions(
   }
 
   const tags: Tag[] = await response.json();
-  const names: string[] = tags.map((tag) => tag.name);
-  return names;
+  const versions: string[] = tags.map((tag) => tag.name);
+  return {
+    versions,
+    headers: {
+      "cache-control": response.headers.get("cache-control"),
+      "last-modified": response.headers.get("last-modified"),
+    },
+  };
 }
