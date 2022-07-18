@@ -17,12 +17,13 @@ export default function Home() {
 }
 
 const HOUR = 60 * 60;
+const DAY = 24 * HOUR;
 
 export async function handler(
   _req: Request,
   ctx: HandlerContext,
 ): Promise<Response> {
   const response: Response = await ctx.render();
-  response.headers.set("Cache-Control", `max-age=${HOUR}`);
+  response.headers.set("Cache-Control", `max-age=${DAY}`);
   return response;
 }
