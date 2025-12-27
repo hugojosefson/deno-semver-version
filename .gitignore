@@ -1,5 +1,9 @@
-/node_modules/
-/.vscode/
+# Fresh build directory
+_fresh/
+# npm + other dependencies
+node_modules/
+vendor/
+
 /.idea/
 /*.log
 .*.swp

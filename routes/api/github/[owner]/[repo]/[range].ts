@@ -1,7 +1,8 @@
-import { HandlerContext } from "$fresh/src/server/types.ts";
 import { maxSatisfying, Range } from "semver";
-import { createGetVersions } from "@src/providers/github.ts";
-import { VersionsResponse } from "@src/providers/versions-response.ts";
+import { createGetVersions } from "@/src/providers/github.ts";
+import { VersionsResponse } from "@/src/providers/versions-response.ts";
+import { State } from "@/utils.ts";
+import { Context } from "fresh";
 
 const RELEASE_REPOS = [
   "denoland/deno",
@@ -11,10 +12,7 @@ const RELEASE_REPOS = [
 /**
  * Responds with the latest tag for the repo.
  */
-export async function handler(
-  _req: Request,
-  ctx: HandlerContext,
-): Promise<Response> {
+export async function handler(ctx: Context<State>): Promise<Response> {
   const { owner, repo, range } = ctx.params;
 
   const getVersions = RELEASE_REPOS.includes(`${owner}/${repo}`)
@@ -43,6 +41,9 @@ export async function handler(
     if (error instanceof TypeError) {
       return new Response(error.message, { status: 400 });
     }
-    return new Response(error.message, { status: 500 });
+    if (error instanceof Error) {
+      return new Response(error.message, { status: 500 });
+    }
+    return new Response("Unknown error", { status: 500 });
   }
 }

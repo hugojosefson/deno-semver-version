@@ -1,4 +1,4 @@
-import { config } from "@src/config.ts";
+import { config } from "@/src/config.ts";
 import { VersionsResponse } from "./versions-response.ts";
 
 interface TagOrRelease {
@@ -37,11 +37,13 @@ export function createGetVersions(type: "tags" | "releases") {
 
     const tags: TagOrRelease[] = await response.json();
     const versions: string[] = tags.map((tag) => tag.tag_name ?? tag.name);
+    const cacheControl = response.headers.get("cache-control");
+    const lastModified = response.headers.get("last-modified");
     return {
       versions,
       headers: {
-        "cache-control": response.headers.get("cache-control"),
-        "last-modified": response.headers.get("last-modified"),
+        ...(cacheControl ? { "cache-control": cacheControl } : {}),
+        ...(lastModified ? { "last-modified": lastModified } : {}),
       },
     };
   };

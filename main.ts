@@ -1,9 +1,9 @@
-/// <reference no-default-lib="true" />
-/// <reference lib="dom" />
-/// <reference lib="dom.asynciterable" />
-/// <reference lib="deno.ns" />
-/// <reference lib="deno.unstable" />
+import { App, staticFiles } from "fresh";
+import { type State } from "./utils.ts";
 
-import { start } from "$fresh/server.ts";
-import manifest from "./fresh.gen.ts";
-await start(manifest);
+export const app = new App<State>();
+
+app.use(staticFiles());
+
+// Include file-system based routes here
+app.fsRoutes();

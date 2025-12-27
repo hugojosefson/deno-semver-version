@@ -1,26 +1,59 @@
 {
+  "nodeModulesDir": "manual",
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts"
+    "check": "deno fmt --check . && deno lint . && deno check",
+    "dev": "vite",
+    "build": "vite build",
+    "start": "deno serve -A _fresh/server.js",
+    "update": "deno run -A -r jsr:@fresh/update ."
   },
   "lint": {
-    "exclude": [
-      ".git/"
-    ]
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    }
   },
+  "exclude": [
+    "**/_fresh/*"
+  ],
   "imports": {
-    "@src/": "./src/",
-    "$fresh/": "https://deno.land/x/fresh@1.0.1/",
-    "preact": "https://esm.sh/preact@10.8.2",
-    "preact/": "https://esm.sh/preact@10.8.2/",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.2",
-    "semver": "https://deno.land/x/semver@v1.4.0/mod.ts"
+    "@/": "./",
+    "fresh": "jsr:@fresh/core@^2.2.0",
+    "preact": "npm:preact@^10.27.2",
+    "@preact/signals": "npm:@preact/signals@^2.5.0",
+    "@fresh/plugin-vite": "jsr:@fresh/plugin-vite@^1.0.8",
+    "semver": "https://deno.land/x/semver@v1.4.0/mod.ts",
+    "vite": "npm:vite@^7.1.3"
   },
-  "deploy": {
-    "project": "semver-version",
-    "exclude": [
-      "**/node_modules"
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.asynciterable",
+      "dom.iterable",
+      "deno.ns"
     ],
-    "include": [],
-    "entrypoint": "main.ts"
+    "jsx": "precompile",
+    "jsxImportSource": "preact",
+    "jsxPrecompileSkipElements": [
+      "a",
+      "img",
+      "source",
+      "body",
+      "html",
+      "head",
+      "title",
+      "meta",
+      "script",
+      "link",
+      "style",
+      "base",
+      "noscript",
+      "template"
+    ],
+    "types": [
+      "vite/client"
+    ]
   }
 }

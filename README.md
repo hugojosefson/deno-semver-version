@@ -69,7 +69,7 @@ curl -f https://semver-version.deno.dev/api/github/denoland/fresh/1
 Start the project:
 
 ```
-deno task start
+deno task dev
 ```
 
 This will watch the project directory and restart as necessary.
