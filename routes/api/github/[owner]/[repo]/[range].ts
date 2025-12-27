@@ -1,7 +1,12 @@
 import { HandlerContext } from "$fresh/src/server/types.ts";
 import { maxSatisfying, Range } from "semver";
-import { getVersions } from "@src/providers/github.ts";
+import { createGetVersions } from "@src/providers/github.ts";
 import { VersionsResponse } from "@src/providers/versions-response.ts";
+
+const RELEASE_REPOS = [
+  "denoland/deno",
+  "docker/compose",
+];
 
 /**
  * Responds with the latest tag for the repo.
@@ -11,6 +16,10 @@ export async function handler(
   ctx: HandlerContext,
 ): Promise<Response> {
   const { owner, repo, range } = ctx.params;
+
+  const getVersions = RELEASE_REPOS.includes(`${owner}/${repo}`)
+    ? createGetVersions("releases")
+    : createGetVersions("tags");
 
   const versionsOrResponse = await getVersions(owner, repo);
   if (versionsOrResponse instanceof Response) {

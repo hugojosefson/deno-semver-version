@@ -13,34 +13,35 @@ function getRepoUrl(owner: string, repo: string): string {
     encodeURIComponent(repo),
   ].join("/");
 }
+export function createGetVersions(type: "tags" | "releases") {
+  return async function getVersions(
+    owner: string,
+    repo: string,
+  ): Promise<VersionsResponse | Response> {
+    const url = `${getRepoUrl(owner, repo)}/${type}`;
 
-export async function getVersions(
-  owner: string,
-  repo: string,
-): Promise<VersionsResponse | Response> {
-  const url = `${getRepoUrl(owner, repo)}/tags`;
+    const token = config.github.token;
+    const requestInit: RequestInit = {
+      method: "GET",
+      headers: token ? { authorization: `token ${token}` } : {},
+    };
 
-  const token = config.github.token;
-  const requestInit: RequestInit = {
-    method: "GET",
-    headers: token ? { authorization: `token ${token}` } : {},
-  };
-
-  const response = await fetch(url, requestInit);
-  if (!response.ok) {
-    if (response.status === 404) {
-      return new Response(null, { status: 404 });
+    const response = await fetch(url, requestInit);
+    if (!response.ok) {
+      if (response.status === 404) {
+        return new Response(null, { status: 404 });
+      }
+      return response;
     }
-    return response;
-  }
 
-  const tags: Tag[] = await response.json();
-  const versions: string[] = tags.map((tag) => tag.name);
-  return {
-    versions,
-    headers: {
-      "cache-control": response.headers.get("cache-control"),
-      "last-modified": response.headers.get("last-modified"),
-    },
+    const tags: Tag[] = await response.json();
+    const versions: string[] = tags.map((tag) => tag.name);
+    return {
+      versions,
+      headers: {
+        "cache-control": response.headers.get("cache-control"),
+        "last-modified": response.headers.get("last-modified"),
+      },
+    };
   };
 }

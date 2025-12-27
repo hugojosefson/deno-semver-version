@@ -4,10 +4,17 @@
   },
   "importMap": "./import_map.json",
   "lint": {
-    "files": {
-      "exclude": [
-        ".git/"
-      ]
-    }
+    "exclude": [
+      ".git/"
+    ]
+  },
+  "deploy": {
+    "project": "semver-version",
+    "exclude": [
+      "**/node_modules",
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
   }
 }
