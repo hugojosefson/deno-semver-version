@@ -2,16 +2,22 @@
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts"
   },
-  "importMap": "./import_map.json",
   "lint": {
     "exclude": [
       ".git/"
     ]
   },
+  "imports": {
+    "@src/": "./src/",
+    "$fresh/": "https://deno.land/x/fresh@1.0.1/",
+    "preact": "https://esm.sh/preact@10.8.2",
+    "preact/": "https://esm.sh/preact@10.8.2/",
+    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.2",
+    "semver": "https://deno.land/x/semver@v1.4.0/mod.ts"
+  },
   "deploy": {
     "project": "semver-version",
     "exclude": [
-      "**/node_modules",
       "**/node_modules"
     ],
     "include": [],

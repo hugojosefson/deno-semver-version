@@ -1,8 +1,9 @@
 import { config } from "@src/config.ts";
 import { VersionsResponse } from "./versions-response.ts";
 
-interface Tag {
+interface TagOrRelease {
   name: string;
+  tag_name?: string;
 }
 
 function getRepoUrl(owner: string, repo: string): string {
@@ -34,8 +35,8 @@ export function createGetVersions(type: "tags" | "releases") {
       return response;
     }
 
-    const tags: Tag[] = await response.json();
-    const versions: string[] = tags.map((tag) => tag.name);
+    const tags: TagOrRelease[] = await response.json();
+    const versions: string[] = tags.map((tag) => tag.tag_name ?? tag.name);
     return {
       versions,
       headers: {

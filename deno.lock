@@ -1,5 +1,5 @@
 {
-  "version": "4",
+  "version": "5",
   "redirects": {
     "https://crux.land/api/get/router@0.0.11": "https://crux.land/api/get/uYQG",
     "https://crux.land/api/get/uYQG": "https://crux.land/api/get/uYQG.ts",
@@ -83,10 +83,10 @@
     "https://deno.land/x/media_types@v2.10.2/deps.ts": "adc4e59af148fe5a49087932536cdf24a7027daa16498c2983124e3ec4d90c20",
     "https://deno.land/x/media_types@v2.10.2/mod.ts": "d63583b978d32eff8b76e1ae5d83cba2fb27baa90cc1bcb0ad15a06122ea8c19",
     "https://deno.land/x/semver@v1.4.0/mod.ts": "c3e08f7f0a3e625015ecc9a46cf79a9dc3f081f3c5b3037d3c49c0773e58d265",
-    "https://esm.sh/preact-render-to-string@5.2.0/X-ZHByZWFjdEAxMC44LjI/denonext/preact-render-to-string.mjs": "dc6d3a416e93f518eafa7651956757d24e63fe46b1cbc245e764a5aaafef2af3",
+    "https://esm.sh/preact-render-to-string@5.2.0/X-ZHByZWFjdEAxMC44LjI/denonext/preact-render-to-string.mjs": "a7a1c0051324f4ac47d487ac89051c3e28a05f618149c5811c743ae8612b39d1",
     "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.2": "4ce3a5eb99aa39e818351852d9b9a1e1cb18bb4fc58b2fa1e8727a39595f6e03",
     "https://esm.sh/preact@10.8.2": "5d87b7175fc8b007f696adc557e7fe857fffe20a0451b3fc8dcfdd4a5b462ab3",
-    "https://esm.sh/preact@10.8.2/denonext/hooks.mjs": "9aa1f84071b8fb59966063934a15d2f30f64eef147f63c54b55c35c4de2afc8f",
+    "https://esm.sh/preact@10.8.2/denonext/hooks.mjs": "0317646eacf3a040029a5e899dc85cf9db9b656d6a3e4a7ac355dfe9cb142df3",
     "https://esm.sh/preact@10.8.2/denonext/preact.mjs": "692cb3985b3fe9806afba4395e48f8179f86d9d92ceafe5cc1533343b91ee5c1",
     "https://esm.sh/preact@10.8.2/hooks": "9e95a9098b79086a9daa49ca49b132245de12640ff00fac8aba86c7b1569f7eb",
     "https://unpkg.com/esbuild-wasm@0.14.39/esm/browser.js": "d9c7265172400e472ff8ca82fe426ba981bc09c83187c91682373d3dbd22c062"
