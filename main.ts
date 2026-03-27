@@ -1,9 +1,17 @@
-import { App, staticFiles } from "fresh";
-import { type State } from "./utils.ts";
+Deno.addSignalListener("SIGINT", () => {
+  try {
+    globalThis.close();
+  } catch {
+    Deno.exit(0);
+  }
+});
 
-export const app = new App<State>();
-
-app.use(staticFiles());
-
-// Include file-system based routes here
-app.fsRoutes();
+export default {
+  fetch(req: Request): Response {
+    const url = new URL(req.url);
+    return Response.redirect(
+      `https://semver.se.deno.net${url.pathname}${url.search}`,
+      301,
+    );
+  },
+};
