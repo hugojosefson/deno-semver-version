@@ -1,4 +1,4 @@
-# semver-version
+# semver.se.deno.net
 
 Web service API for finding the latest release of a repo, from a semver range.
 
@@ -14,20 +14,20 @@ Make an HTTP `GET` request to an API endpoint, and get the relevant version as a
 
 #### Latest version
 
-`GET https://semver-version.deno.dev/api/github/:owner/:repo`
+`GET https://semver.se.deno.net/api/github/:owner/:repo`
 
 Finds the latest git tag for a Github repo.
 
 Examples:
 
 ```sh
-curl -f https://semver-version.deno.dev/api/github/ziglang/zig
-curl -f https://semver-version.deno.dev/api/github/denoland/fresh
+curl -f https://semver.se.deno.net/api/github/ziglang/zig
+curl -f https://semver.se.deno.net/api/github/denoland/fresh
 ```
 
 #### Range
 
-`GET https://semver-version.deno.dev/api/github/:owner/:repo/:range`
+`GET https://semver.se.deno.net/api/github/:owner/:repo/:range`
 
 Finds the latest git tag for a Github repo, that satisfies a specified
 [semantic Versioning range](https://devhints.io/semver).
@@ -35,8 +35,8 @@ Finds the latest git tag for a Github repo, that satisfies a specified
 Examples:
 
 ```sh
-curl -f https://semver-version.deno.dev/api/github/ziglang/zig/0.8
-curl -f https://semver-version.deno.dev/api/github/denoland/fresh/1
+curl -f https://semver.se.deno.net/api/github/ziglang/zig/0.8
+curl -f https://semver.se.deno.net/api/github/denoland/fresh/1
 ```
 
 > When specifying a range, the range must be a valid semver range. It must also
@@ -53,7 +53,7 @@ curl -f https://semver-version.deno.dev/api/github/denoland/fresh/1
 > you would do:
 >
 > ```sh
-> curl -f https://semver-version.deno.dev/api/github/ziglang/zig/"%3E%3D0.7%20%3C0.8"
+> curl -f https://semver.se.deno.net/api/github/ziglang/zig/"%3E%3D0.7%20%3C0.8"
 > ```
 >
 > ...and get:
