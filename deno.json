@@ -55,5 +55,10 @@
     "types": [
       "vite/client"
     ]
+  },
+  "deploy": {
+    "org": "se",
+    "app": "semver"
   }
 }
+
