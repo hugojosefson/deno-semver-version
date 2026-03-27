@@ -2,5 +2,13 @@
   "tasks": {
     "dev": "deno serve --watch --allow-net main.ts",
     "start": "deno serve --allow-net main.ts"
+  },
+  "deploy": {
+    "project": "06e82ddb-f830-4b52-a4d6-45cd87a4e091",
+    "exclude": [
+      "**/node_modules"
+    ],
+    "include": [],
+    "entrypoint": "main.ts"
   }
 }
